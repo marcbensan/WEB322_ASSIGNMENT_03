@@ -1,0 +1,402 @@
+[
+  {
+    "set_num": "7603-1",
+    "name": "Dump Truck",
+    "year": "2006",
+    "theme_id": "22",
+    "num_parts": "33",
+    "img_url": "https://cdn.rebrickable.com/media/sets/7603-1.jpg"
+  },
+  {
+    "set_num": "76031-1",
+    "name": "The Hulk Buster Smash",
+    "year": "2015",
+    "theme_id": "702",
+    "num_parts": "249",
+    "img_url": "https://cdn.rebrickable.com/media/sets/76031-1.jpg"
+  },
+  {
+    "set_num": "76032-1",
+    "name": "The Avengers Quinjet City Chase",
+    "year": "2015",
+    "theme_id": "702",
+    "num_parts": "723",
+    "img_url": "https://cdn.rebrickable.com/media/sets/76032-1.jpg"
+  },
+  {
+    "set_num": "76034-1",
+    "name": "Batboat Harbor Pursuit",
+    "year": "2015",
+    "theme_id": "697",
+    "num_parts": "265",
+    "img_url": "https://cdn.rebrickable.com/media/sets/76034-1.jpg"
+  },
+  {
+    "set_num": "76035-1",
+    "name": "Jokerland",
+    "year": "2015",
+    "theme_id": "697",
+    "num_parts": "1038",
+    "img_url": "https://cdn.rebrickable.com/media/sets/76035-1.jpg"
+  },
+  {
+    "set_num": "76036-1",
+    "name": "Carnage's SHIELD Sky Attack",
+    "year": "2015",
+    "theme_id": "706",
+    "num_parts": "97",
+    "img_url": "https://cdn.rebrickable.com/media/sets/76036-1.jpg"
+  },
+  {
+    "set_num": "76037-1",
+    "name": "Rhino and Sandman Super Villain Team-up",
+    "year": "2015",
+    "theme_id": "706",
+    "num_parts": "387",
+    "img_url": "https://cdn.rebrickable.com/media/sets/76037-1.jpg"
+  },
+  {
+    "set_num": "76038-1",
+    "name": "Attack on Avengers Tower",
+    "year": "2015",
+    "theme_id": "702",
+    "num_parts": "516",
+    "img_url": "https://cdn.rebrickable.com/media/sets/76038-1.jpg"
+  },
+  {
+    "set_num": "76039-1",
+    "name": "Ant-Man Final Battle",
+    "year": "2015",
+    "theme_id": "696",
+    "num_parts": "196",
+    "img_url": "https://cdn.rebrickable.com/media/sets/76039-1.jpg"
+  },
+  {
+    "set_num": "76040-1",
+    "name": "Brainiac Attack",
+    "year": "2015",
+    "theme_id": "700",
+    "num_parts": "179",
+    "img_url": "https://cdn.rebrickable.com/media/sets/76040-1.jpg"
+  },
+  {
+    "set_num": "7604-1",
+    "name": "Triceratops",
+    "year": "2006",
+    "theme_id": "22",
+    "num_parts": "34",
+    "img_url": "https://cdn.rebrickable.com/media/sets/7604-1.jpg"
+  },
+  {
+    "set_num": "76041-1",
+    "name": "The Hydra Fortress Smash",
+    "year": "2015",
+    "theme_id": "702",
+    "num_parts": "405",
+    "img_url": "https://cdn.rebrickable.com/media/sets/76041-1.jpg"
+  },
+  {
+    "set_num": "76042-1",
+    "name": "The SHIELD Helicarrier",
+    "year": "2015",
+    "theme_id": "702",
+    "num_parts": "2996",
+    "img_url": "https://cdn.rebrickable.com/media/sets/76042-1.jpg"
+  },
+  {
+    "set_num": "76044-1",
+    "name": "Clash of the Heroes",
+    "year": "2016",
+    "theme_id": "700",
+    "num_parts": "91",
+    "img_url": "https://cdn.rebrickable.com/media/sets/76044-1.jpg"
+  },
+  {
+    "set_num": "76045-1",
+    "name": "Kryptonite Interception",
+    "year": "2016",
+    "theme_id": "700",
+    "num_parts": "307",
+    "img_url": "https://cdn.rebrickable.com/media/sets/76045-1.jpg"
+  },
+  {
+    "set_num": "76046-1",
+    "name": "Heroes of Justice: Sky High Battle",
+    "year": "2016",
+    "theme_id": "700",
+    "num_parts": "518",
+    "img_url": "https://cdn.rebrickable.com/media/sets/76046-1.jpg"
+  },
+  {
+    "set_num": "76047-1",
+    "name": "Black Panther Pursuit",
+    "year": "2016",
+    "theme_id": "696",
+    "num_parts": "288",
+    "img_url": "https://cdn.rebrickable.com/media/sets/76047-1.jpg"
+  },
+  {
+    "set_num": "76048-1",
+    "name": "Iron Skull Sub Attack",
+    "year": "2016",
+    "theme_id": "702",
+    "num_parts": "335",
+    "img_url": "https://cdn.rebrickable.com/media/sets/76048-1.jpg"
+  },
+  {
+    "set_num": "76049-1",
+    "name": "Avenjet Space Mission",
+    "year": "2016",
+    "theme_id": "702",
+    "num_parts": "524",
+    "img_url": "https://cdn.rebrickable.com/media/sets/76049-1.jpg"
+  },
+  {
+    "set_num": "76050-1",
+    "name": "Crossbones' Hazard Heist",
+    "year": "2016",
+    "theme_id": "696",
+    "num_parts": "180",
+    "img_url": "https://cdn.rebrickable.com/media/sets/76050-1.jpg"
+  },
+  {
+    "set_num": "7605-1",
+    "name": "Stegosaurus",
+    "year": "2006",
+    "theme_id": "22",
+    "num_parts": "47",
+    "img_url": "https://cdn.rebrickable.com/media/sets/7605-1.jpg"
+  },
+  {
+    "set_num": "76051-1",
+    "name": "Super Hero Airport Battle",
+    "year": "2016",
+    "theme_id": "696",
+    "num_parts": "808",
+    "img_url": "https://cdn.rebrickable.com/media/sets/76051-1.jpg"
+  },
+  {
+    "set_num": "76052-1",
+    "name": "Batman Classic TV Series - Batcave",
+    "year": "2016",
+    "theme_id": "697",
+    "num_parts": "2526",
+    "img_url": "https://cdn.rebrickable.com/media/sets/76052-1.jpg"
+  },
+  {
+    "set_num": "76053-1",
+    "name": "Batman: Gotham City Cycle Chase",
+    "year": "2016",
+    "theme_id": "697",
+    "num_parts": "224",
+    "img_url": "https://cdn.rebrickable.com/media/sets/76053-1.jpg"
+  },
+  {
+    "set_num": "76054-1",
+    "name": "Batman: Scarecrow Harvest of Fear",
+    "year": "2016",
+    "theme_id": "697",
+    "num_parts": "564",
+    "img_url": "https://cdn.rebrickable.com/media/sets/76054-1.jpg"
+  },
+  {
+    "set_num": "76055-1",
+    "name": "Batman: Killer Croc Sewer Smash",
+    "year": "2016",
+    "theme_id": "697",
+    "num_parts": "760",
+    "img_url": "https://cdn.rebrickable.com/media/sets/76055-1.jpg"
+  },
+  {
+    "set_num": "76056-1",
+    "name": "Batman: Rescue from Ra's al Ghul",
+    "year": "2016",
+    "theme_id": "697",
+    "num_parts": "257",
+    "img_url": "https://cdn.rebrickable.com/media/sets/76056-1.jpg"
+  },
+  {
+    "set_num": "76057-1",
+    "name": "Spider-Man: Web Warriors Ultimate Bridge Battle",
+    "year": "2016",
+    "theme_id": "706",
+    "num_parts": "1093",
+    "img_url": "https://cdn.rebrickable.com/media/sets/76057-1.jpg"
+  },
+  {
+    "set_num": "76058-1",
+    "name": "Spider-Man: Ghost Rider Team-up",
+    "year": "2016",
+    "theme_id": "706",
+    "num_parts": "218",
+    "img_url": "https://cdn.rebrickable.com/media/sets/76058-1.jpg"
+  },
+  {
+    "set_num": "76059-1",
+    "name": "Spider-Man: Doc Ock's Tentacle Trap",
+    "year": "2016",
+    "theme_id": "706",
+    "num_parts": "447",
+    "img_url": "https://cdn.rebrickable.com/media/sets/76059-1.jpg"
+  },
+  {
+    "set_num": "76060-1",
+    "name": "Doctor Strange's Sanctum Sanctorum",
+    "year": "2016",
+    "theme_id": "696",
+    "num_parts": "359",
+    "img_url": "https://cdn.rebrickable.com/media/sets/76060-1.jpg"
+  },
+  {
+    "set_num": "7606-1",
+    "name": "Frog",
+    "year": "2006",
+    "theme_id": "22",
+    "num_parts": "33",
+    "img_url": "https://cdn.rebrickable.com/media/sets/7606-1.jpg"
+  },
+  {
+    "set_num": "76061-1",
+    "name": "Mighty Micros: Batman vs. Catwoman",
+    "year": "2016",
+    "theme_id": "695",
+    "num_parts": "79",
+    "img_url": "https://cdn.rebrickable.com/media/sets/76061-1.jpg"
+  },
+  {
+    "set_num": "76062-1",
+    "name": "Mighty Micros: Robin vs. Bane",
+    "year": "2016",
+    "theme_id": "695",
+    "num_parts": "77",
+    "img_url": "https://cdn.rebrickable.com/media/sets/76062-1.jpg"
+  },
+  {
+    "set_num": "76063-1",
+    "name": "Mighty Micros: The Flash vs. Captain Cold",
+    "year": "2016",
+    "theme_id": "695",
+    "num_parts": "88",
+    "img_url": "https://cdn.rebrickable.com/media/sets/76063-1.jpg"
+  },
+  {
+    "set_num": "76064-1",
+    "name": "Mighty Micros: Spider-Man vs. Green Goblin",
+    "year": "2016",
+    "theme_id": "696",
+    "num_parts": "85",
+    "img_url": "https://cdn.rebrickable.com/media/sets/76064-1.jpg"
+  },
+  {
+    "set_num": "76065-1",
+    "name": "Mighty Micros: Captain America vs. Red Skull",
+    "year": "2016",
+    "theme_id": "696",
+    "num_parts": "95",
+    "img_url": "https://cdn.rebrickable.com/media/sets/76065-1.jpg"
+  },
+  {
+    "set_num": "76066-1",
+    "name": "Mighty Micros: Hulk vs. Ultron",
+    "year": "2016",
+    "theme_id": "696",
+    "num_parts": "80",
+    "img_url": "https://cdn.rebrickable.com/media/sets/76066-1.jpg"
+  },
+  {
+    "set_num": "76067-1",
+    "name": "Tanker Truck Takedown",
+    "year": "2016",
+    "theme_id": "696",
+    "num_parts": "330",
+    "img_url": "https://cdn.rebrickable.com/media/sets/76067-1.jpg"
+  },
+  {
+    "set_num": "76068-1",
+    "name": "Mighty Micros: Superman vs. Bizarro",
+    "year": "2017",
+    "theme_id": "695",
+    "num_parts": "93",
+    "img_url": "https://cdn.rebrickable.com/media/sets/76068-1.jpg"
+  },
+  {
+    "set_num": "76069-1",
+    "name": "Mighty Micros: Batman vs. Killer Moth",
+    "year": "2017",
+    "theme_id": "695",
+    "num_parts": "83",
+    "img_url": "https://cdn.rebrickable.com/media/sets/76069-1.jpg"
+  },
+  {
+    "set_num": "76070-1",
+    "name": "Mighty Micros: Wonder Woman vs. Doomsday",
+    "year": "2017",
+    "theme_id": "695",
+    "num_parts": "85",
+    "img_url": "https://cdn.rebrickable.com/media/sets/76070-1.jpg"
+  },
+  {
+    "set_num": "7607-1",
+    "name": "Butterfly",
+    "year": "2006",
+    "theme_id": "22",
+    "num_parts": "29",
+    "img_url": "https://cdn.rebrickable.com/media/sets/7607-1.jpg"
+  },
+  {
+    "set_num": "76071-1",
+    "name": "Mighty Micros: Spider-Man vs. Scorpion",
+    "year": "2017",
+    "theme_id": "696",
+    "num_parts": "79",
+    "img_url": "https://cdn.rebrickable.com/media/sets/76071-1.jpg"
+  },
+  {
+    "set_num": "76072-1",
+    "name": "Mighty Micros: Iron Man vs. Thanos",
+    "year": "2017",
+    "theme_id": "696",
+    "num_parts": "94",
+    "img_url": "https://cdn.rebrickable.com/media/sets/76072-1.jpg"
+  },
+  {
+    "set_num": "76073-1",
+    "name": "Mighty Micros: Wolverine vs. Magneto",
+    "year": "2017",
+    "theme_id": "696",
+    "num_parts": "84",
+    "img_url": "https://cdn.rebrickable.com/media/sets/76073-1.jpg"
+  },
+  {
+    "set_num": "76075-1",
+    "name": "Wonder Woman Warrior Battle",
+    "year": "2017",
+    "theme_id": "695",
+    "num_parts": "286",
+    "img_url": "https://cdn.rebrickable.com/media/sets/76075-1.jpg"
+  },
+  {
+    "set_num": "76076-1",
+    "name": "Captain America Jet Pursuit",
+    "year": "2017",
+    "theme_id": "702",
+    "num_parts": "161",
+    "img_url": "https://cdn.rebrickable.com/media/sets/76076-1.jpg"
+  },
+  {
+    "set_num": "76077-1",
+    "name": "Iron Man: Detroit Steel Strikes",
+    "year": "2017",
+    "theme_id": "702",
+    "num_parts": "378",
+    "img_url": "https://cdn.rebrickable.com/media/sets/76077-1.jpg"
+  },
+  {
+    "set_num": "76078-1",
+    "name": "Hulk vs. Red Hulk",
+    "year": "2017",
+    "theme_id": "702",
+    "num_parts": "376",
+    "img_url": "https://cdn.rebrickable.com/media/sets/76078-1.jpg"
+  }
+]
