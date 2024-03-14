@@ -14,7 +14,7 @@ app.use(express.static("public"));
 app.set("view engine", "ejs");
 
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "./views/home.html"));
+  res.render("layout")
 });
 
 app.get("/lego/sets", async (req, res) => {
@@ -23,7 +23,7 @@ app.get("/lego/sets", async (req, res) => {
 });
 
 app.get("/about", (req, res) => {
-  res.sendFile(path.join(__dirname, "/views/about.html"));
+  res.sendFile(path.join(__dirname, "/views/about.ejs"));
 });
 
 app.listen(HTTP_PORT, () => {

@@ -1,11 +1,11 @@
 {
   "name": "assignment_3",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "tw:build": "tailwindcss build -i ./public/css/tailwind.css -o ./public/css/main.css"
+    "tw:build": "tailwindcss build -i ./public/css/tailwind.css -o ./public/css/main.css",
+    "start": "node server.js"
   },
   "author": "",
   "license": "ISC",
@@ -18,5 +18,6 @@
   },
   "devDependencies": {
     "tailwindcss": "^3.4.1"
-  }
+  },
+  "description": ""
 }
