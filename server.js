@@ -10,11 +10,16 @@ legoData.initialize();
 
 app.use(express.static("public"));
 
+app.use((req,res,next)=>{
+  app.locals.currentRoute = req.path;
+  next();
+});
+
 // init ejs
 app.set("view engine", "ejs");
 
 app.get("/", (req, res) => {
-  res.render("layout")
+  res.render("home")
 });
 
 app.get("/lego/sets", async (req, res) => {
@@ -23,7 +28,7 @@ app.get("/lego/sets", async (req, res) => {
 });
 
 app.get("/about", (req, res) => {
-  res.sendFile(path.join(__dirname, "/views/about.ejs"));
+  res.render('about')
 });
 
 app.listen(HTTP_PORT, () => {
