@@ -17,13 +17,21 @@ app.get("/", (req, res) => {
   res.render("home");
 });
 
-app.get("/lego/sets", async (req, res) => {
-  const sets = await legoData.getAllSets();
-  res.json(sets);
-});
-
 app.get("/about", (req, res) => {
   res.render("about");
+});
+
+
+app.get("/lego/sets", async (req, res) => {
+  const theme = req.query.theme;
+
+  if (theme) {
+    const sets = await legoData.getSetsByTheme(theme);
+    res.json(sets);
+  } else {
+    const sets = await legoData.getAllSets();
+    res.json(sets);
+  }
 });
 
 app.listen(HTTP_PORT, () => {
