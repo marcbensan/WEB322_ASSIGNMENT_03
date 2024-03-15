@@ -27,5 +27,5 @@ app.get("/about", (req, res) => {
 });
 
 app.listen(HTTP_PORT, () => {
-  console.log(`server listening on the port: ${HTTP_PORT}`);
+  console.log(`this local server listening on the port: ${HTTP_PORT}`);
 });
