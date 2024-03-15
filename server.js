@@ -3,23 +3,18 @@ const express = require("express");
 const app = express();
 const path = require("path");
 
+app.use(express.static(path.join(__dirname, "/public")));
+
 const HTTP_PORT = process.env.PORT || 8080;
 
 // Initialize the Lego data
 legoData.initialize();
 
-app.use(express.static("public"));
-
-app.use((req,res,next)=>{
-  app.locals.currentRoute = req.path;
-  next();
-});
-
 // init ejs
 app.set("view engine", "ejs");
 
 app.get("/", (req, res) => {
-  res.render("home")
+  res.render("home");
 });
 
 app.get("/lego/sets", async (req, res) => {
@@ -28,7 +23,7 @@ app.get("/lego/sets", async (req, res) => {
 });
 
 app.get("/about", (req, res) => {
-  res.render('about')
+  res.render("about");
 });
 
 app.listen(HTTP_PORT, () => {
