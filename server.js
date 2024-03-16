@@ -1,3 +1,29 @@
+/********************************************************************************
+
+* WEB322 – Assignment 03
+
+* 
+
+* I declare that this assignment is my own work in accordance with Seneca's
+
+* Academic Integrity Policy:
+
+* 
+
+* https://www.senecacollege.ca/about/policies/academic-integrity-policy.html
+
+* 
+
+* Name: Denyl Marc Bensan Student ID: 171309222 Date: 03/15/2024
+
+*
+
+* Published URL: https://powerful-button-hare.cyclic.app/
+
+*
+
+********************************************************************************/
+
 const legoData = require("./modules/legoSets");
 const express = require("express");
 const app = express();
@@ -7,11 +33,11 @@ app.use(express.static(path.join(__dirname, "/public")));
 
 const HTTP_PORT = process.env.PORT || 8080;
 
-// Initialize the Lego data
-legoData.initialize();
-
 // init ejs
 app.set("view engine", "ejs");
+
+// Initialize the Lego data
+legoData.initialize();
 
 // home page
 app.get("/", (req, res) => {
@@ -41,7 +67,6 @@ app.get("/lego/sets/:id", async (req, res) => {
   try {
     const id = req.params.id;
     const set = await legoData.getSetByNum(id);
-    if (!set) throw new Error("Lego set not found");
     res.json(set);
   } catch (error) {
     res.status(404).render("404");
