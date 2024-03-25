@@ -9,20 +9,7 @@
         <a href="/about" <% if (currentRoute == "/about") { %> class="active" <% } %>>About</a>
       </li>
       <li>
-        <details>
-          <summary>Theme</summary>
-          <ul>
-            <li>
-              <a href="/lego/sets?theme=avengers">Avengers</a>
-            </li>
-            <li>
-              <a href="/lego/sets?theme=creator">Creator</a>
-            </li>
-            <li>
-              <a href="/lego/sets?theme=batman">Batman</a>
-            </li>
-          </ul>
-        </details>
+        <a href="/lego/sets" <% if (currentRoute == "/lego/sets") { %> class="active" <% } %>>Collection</a>
       </li>
     </ul>
   </div>

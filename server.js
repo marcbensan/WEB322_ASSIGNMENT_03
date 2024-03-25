@@ -60,10 +60,10 @@ app.get("/about", (req, res) => {
 app.get("/lego/sets", async (req, res) => {
   try {
     const theme = req.query.theme;
-    let sets = theme
+    let legoSets = theme
       ? await legoData.getSetsByTheme(theme)
       : await legoData.getAllSets();
-    res.json(sets);
+    res.render("sets", { sets: legoSets });
   } catch (error) {
     res.status(404).render("404");
   }
