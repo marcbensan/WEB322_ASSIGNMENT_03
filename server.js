@@ -28,12 +28,19 @@ const legoData = require("./modules/legoSets");
 const express = require("express");
 const app = express();
 const path = require("path");
+const layout = require("express-ejs-layouts");
 
 app.use(express.static(path.join(__dirname, "/public")));
+app.use(layout);
+app.use((req, res, next) => {
+  app.locals.currentRoute = req.path;
+  next();
+});
 
 const HTTP_PORT = process.env.PORT || 8080;
 
 // init ejs
+app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
 // Initialize the Lego data

@@ -1,0 +1,29 @@
+<div class="flex justify-between items-center bg-base-100">
+  <div class="flex-1">
+    <a class="btn btn-ghost normal-case text-xl" href="/">Lego Collection</a>
+  </div>
+
+  <div class="navbar-center">
+    <ul class="menu menu-horizontal px-1 flex items-center space-x-3">
+      <li>
+        <a href="/about" <% if (currentRoute == "/about") { %> class="active" <% } %>>About</a>
+      </li>
+      <li>
+        <details>
+          <summary>Theme</summary>
+          <ul>
+            <li>
+              <a href="/lego/sets?theme=avengers">Avengers</a>
+            </li>
+            <li>
+              <a href="/lego/sets?theme=creator">Creator</a>
+            </li>
+            <li>
+              <a href="/lego/sets?theme=batman">Batman</a>
+            </li>
+          </ul>
+        </details>
+      </li>
+    </ul>
+  </div>
+</div>
