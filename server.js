@@ -70,7 +70,7 @@ app.get("/lego/sets/:id", async (req, res) => {
   try {
     const id = req.params.id;
     const set = await legoData.getSetByNum(id);
-    res.json(set);
+    res.render("set", { set: set });
   } catch (error) {
     res.status(404).render("404");
   }
