@@ -8,13 +8,13 @@
         <p class="py-6">
           Browse the entire collection. Click the theme to filter by themes such
           as:
-          <a href="/lego/sets?theme=avengers" class="btn btn-primary btn-xs"
+          <a href="/lego/sets?theme=avengers" class="btn btn-primary btn-sm"
             >Avengers</a
           >
-          <a href="/lego/sets?theme=creator" class="btn btn-primary btn-xs"
+          <a href="/lego/sets?theme=creator" class="btn btn-primary btn-sm"
             >Creator</a
           >
-          <a href="/lego/sets?theme=batman" class="btn btn-primary btn-xs"
+          <a href="/lego/sets?theme=batman" class="btn btn-primary btn-sm"
             >Batman</a
           >
         </p>
@@ -45,11 +45,11 @@
           </td>
 
           <td>
-            <span class="font-bold">Year: </span> <%= set.year %> | 
+            <span class="font-bold">Year: </span> <%= set.year %> |
             <span class="font-bold">Parts:</span> <%= set.num_parts %>
           </td>
           <th>
-            <a href="/lego/sets/<%= set.set_num %>" class="btn btn-xs"
+            <a href="/lego/sets/<%= set.set_num %>" class="btn btn-secondary btn-sm"
               >Details</a
             >
           </th>
