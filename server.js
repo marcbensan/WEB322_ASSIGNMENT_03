@@ -1,23 +1,27 @@
 /*********************************************************************************
-* WEB322 – Assignment 04
-* 
-* I declare that this assignment is my own work in accordance with Seneca's
-* Academic Integrity Policy:
-* 
-* https://www.senecacollege.ca/about/policies/academic-integrity-policy.html
-* 
-* Name: Denyl Marc Bensan
-* Student ID: 171309222
-* Date: 25/03/2024
-* 
-* Published URL: https://powerful-button-hare.cyclic.app/
-*********************************************************************************/
+ * WEB322 – Assignment 04
+ *
+ * I declare that this assignment is my own work in accordance with Seneca's
+ * Academic Integrity Policy:
+ *
+ * https://www.senecacollege.ca/about/policies/academic-integrity-policy.html
+ *
+ * Name: Denyl Marc Bensan
+ * Student ID: 171309222
+ * Date: 25/03/2024
+ *
+ * Published URL: https://powerful-button-hare.cyclic.app/
+ *********************************************************************************/
 
 const legoData = require("./modules/legoSets");
 const express = require("express");
 const app = express();
 const path = require("path");
 const layout = require("express-ejs-layouts");
+
+// body parser
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 // static files
 app.use(express.static(path.join(__dirname, "/public")));
@@ -51,7 +55,9 @@ app.get("/lego/sets", async (req, res) => {
       : await legoData.getAllSets();
     res.render("sets", { sets: legoSets });
   } catch (error) {
-    res.status(404).render("404", {message: "Unable to find requested sets."});
+    res
+      .status(404)
+      .render("404", { message: "Unable to find requested sets." });
   }
 });
 
@@ -62,13 +68,50 @@ app.get("/lego/sets/:id", async (req, res) => {
     const set = await legoData.getSetByNum(id);
     res.render("set", { set: set });
   } catch (error) {
-    res.status(404).render("404", {message: "Unable to find requested set."});
+    res.status(404).render("404", { message: "Unable to find requested set." });
   }
 });
 
-// 404 page
+// DB CRUD methods
+app.get("/lego/addSet", async (req, res) => {
+  try {
+    const themes = await legoData.getAllThemes();
+    res.render("addSet", { themes: themes });
+  } catch (err) {
+    res.status(404).render("404", { message: "Unable to add set." });
+  }
+});
+
+// creating a set
+app.post("/lego/addSet", async (req, res) => {
+  try{
+    // validator to check set_num uniqueness
+    const allSets = await legoData.getAllSets();
+    const allSetIDs = allSets.map(set => set.set_num);
+
+    // If the set_num entered is already in the database
+    if (allSetIDs.includes(req.body.set_num)) {
+      throw new Error("ID already exists in the system.");
+    }
+
+    await legoData.addSet(req.body)
+    res.redirect("/lego/sets")
+  }catch(err){
+    res.render("500", { message: `I'm sorry, but we have encountered the following error: ${err}` });
+  }
+})
+
+// ERROR pages (404, 500)
 app.use((req, res) => {
-  res.status(404).render("404", {message: "I'm sorry, we're unable to find what you're looking for"});
+  res.status(404).render("404", {
+    message: "I'm sorry, we're unable to find what you're looking for",
+  });
+});
+
+app.use((req, res) => {
+  res.status(500).render("500", {
+    message: "Something went wrong on our end.",
+  });
 });
 
 app.listen(HTTP_PORT, () => {

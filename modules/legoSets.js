@@ -128,14 +128,29 @@ function getAllSets() {
   });
 }
 
+// added a new function that retrieves all themes
+function getAllThemes() {
+  return new Promise((resolve, reject) => {
+    Theme.findAll({
+      order: [["id"]],
+    })
+      .then((themes) => {
+        resolve(themes);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+}
+
 function getSetByNum(setNum) {
   return new Promise((resolve, reject) => {
-    Set.findAll({
+    Set.findOne({
       include: [Theme],
       where: { set_num: setNum },
     })
       .then((sets) => {
-        if (!sets) {
+        if (sets.length === 0) {
           reject("Unable to find requested set");
         }
         resolve(sets);
@@ -157,7 +172,7 @@ function getSetsByTheme(theme) {
       },
     })
       .then((sets) => {
-        if (!sets) {
+        if (sets.length === 0) {
           reject("Unable to find requested sets.");
         }
 
@@ -169,7 +184,33 @@ function getSetsByTheme(theme) {
   });
 }
 
-module.exports = { initialize, getAllSets, getSetByNum, getSetsByTheme };
+function addSet(setData) {
+  return new Promise((resolve, reject) => {
+    const { set_num, name, year, num_parts, theme_id, img_url } = setData;
+
+    Set.create({
+      set_num: set_num,
+      name: name,
+      year: year,
+      num_parts: num_parts,
+      theme_id: theme_id,
+      img_url: img_url,
+    }).then((createdSet) => {
+      resolve(createdSet)
+    }).catch(err => {
+      reject(err.errors[0].message )
+    })
+  });
+}
+
+module.exports = {
+  initialize,
+  getAllSets,
+  getAllThemes,
+  getSetByNum,
+  getSetsByTheme,
+  addSet
+};
 
 //initialize();
 //console.log(getSetsByTheme("The Muppets"));
