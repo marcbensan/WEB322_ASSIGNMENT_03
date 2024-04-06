@@ -1,23 +1,23 @@
 /********************************************************************************
-*  WEB322 – Assignment 05
-* 
-*  I declare that this assignment is my own work in accordance with Seneca's
-*  Academic Integrity Policy:
-* 
-*  https://www.senecacollege.ca/about/policies/academic-integrity-policy.html
-* 
-*  Name: Denyl Marc Bensan   Student ID: 171309222 Date: 04/06/2024
-*
-*  Published URL: ___________________________________________________________
-*
-********************************************************************************/
-
+ *  WEB322 – Assignment 05
+ *
+ *  I declare that this assignment is my own work in accordance with Seneca's
+ *  Academic Integrity Policy:
+ *
+ *  https://www.senecacollege.ca/about/policies/academic-integrity-policy.html
+ *
+ *  Name: Denyl Marc Bensan   Student ID: 171309222 Date: 04/06/2024
+ *
+ *  Published URL: ___________________________________________________________
+ *
+ ********************************************************************************/
 
 const legoData = require("./modules/legoSets");
 const express = require("express");
 const app = express();
 const path = require("path");
 const layout = require("express-ejs-layouts");
+require("dotenv").config;
 
 // body parser
 app.use(express.json());
