@@ -20,11 +20,11 @@ const path = require("path");
 const layout = require("express-ejs-layouts");
 
 const sequelize = new Sequelize(
-  process.env.PGDATABASE,
-  process.env.PGUSER,
-  process.env.PGPASSWORD, 
+  process.env.DB_DATABASE,
+  process.env.DB_USER,
+  process.env.DB_PASSWORD, 
   {
-    host: process.env.PGHOST,
+    host: process.env.DB_HOST,
     dialect: "postgres",
     port: 5432,
     dialectOptions: {
