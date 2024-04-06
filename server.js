@@ -18,6 +18,7 @@ const express = require("express");
 const app = express();
 const path = require("path");
 const layout = require("express-ejs-layouts");
+const Sequelize = require("sequelize");
 
 const sequelize = new Sequelize(
   process.env.DB_DATABASE,
@@ -40,7 +41,7 @@ app.use(express.urlencoded({ extended: true }));
 // static files
 app.use(express.static(path.join(__dirname, "/public")));
 
-const HTTP_PORT = process.env.PORT || 8080;
+const HTTP_PORT = process.env.PORT || 3000;
 
 // init ejs
 app.set("view engine", "ejs");
