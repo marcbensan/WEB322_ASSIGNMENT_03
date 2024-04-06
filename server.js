@@ -26,7 +26,7 @@ app.use(express.urlencoded({ extended: true }));
 // static files
 app.use(express.static(path.join(__dirname, "/public")));
 
-const HTTP_PORT = process.env.PORT || 8080;
+const HTTP_PORT = 8080;
 
 // init ejs
 app.set("view engine", "ejs");
