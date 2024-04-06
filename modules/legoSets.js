@@ -230,6 +230,18 @@ function editSet(set_num, setData) {
   });
 }
 
+function deleteSet(set_num) {
+  return new Promise((resolve, reject) => {
+    Set.destroy({
+      where: {set_num: set_num}
+    }).then((set) => {
+      resolve(set)
+    }).catch(err => {
+      reject(err.errors[0].message)
+    })
+  })
+}
+
 module.exports = {
   initialize,
   getAllSets,
@@ -238,6 +250,7 @@ module.exports = {
   getSetsByTheme,
   addSet,
   editSet,
+  deleteSet
 };
 
 //initialize();

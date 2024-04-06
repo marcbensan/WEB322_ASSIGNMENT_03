@@ -1,17 +1,17 @@
-/*********************************************************************************
- * WEB322 – Assignment 04
- *
- * I declare that this assignment is my own work in accordance with Seneca's
- * Academic Integrity Policy:
- *
- * https://www.senecacollege.ca/about/policies/academic-integrity-policy.html
- *
- * Name: Denyl Marc Bensan
- * Student ID: 171309222
- * Date: 25/03/2024
- *
- * Published URL: https://powerful-button-hare.cyclic.app/
- *********************************************************************************/
+/********************************************************************************
+*  WEB322 – Assignment 05
+* 
+*  I declare that this assignment is my own work in accordance with Seneca's
+*  Academic Integrity Policy:
+* 
+*  https://www.senecacollege.ca/about/policies/academic-integrity-policy.html
+* 
+*  Name: Denyl Marc Bensan   Student ID: 171309222 Date: 04/06/2024
+*
+*  Published URL: ___________________________________________________________
+*
+********************************************************************************/
+
 
 const legoData = require("./modules/legoSets");
 const express = require("express");
@@ -118,6 +118,19 @@ app.get("/lego/editSet/:setNum", async (req, res) => {
 app.post("/lego/editSet", async (req, res) => {
   try {
     await legoData.editSet(req.body.set_num, req.body);
+    res.redirect("/lego/sets");
+  } catch (err) {
+    res.render("500", {
+      message: `I'm sorry, but we have encountered the following error: ${err}`,
+    });
+  }
+});
+
+// delete set
+app.get("/lego/deleteSet/:setNum", async (req, res) => {
+  try {
+    const num = req.params.setNum;
+    await legoData.deleteSet(num);
     res.redirect("/lego/sets");
   } catch (err) {
     res.render("500", {
