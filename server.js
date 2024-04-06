@@ -17,7 +17,7 @@ const express = require("express");
 const app = express();
 const path = require("path");
 const layout = require("express-ejs-layouts");
-require("dotenv").config;
+require("dotenv").config();
 
 // body parser
 app.use(express.json());
