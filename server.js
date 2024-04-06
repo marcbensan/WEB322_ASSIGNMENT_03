@@ -84,22 +84,47 @@ app.get("/lego/addSet", async (req, res) => {
 
 // creating a set
 app.post("/lego/addSet", async (req, res) => {
-  try{
+  try {
     // validator to check set_num uniqueness
     const allSets = await legoData.getAllSets();
-    const allSetIDs = allSets.map(set => set.set_num);
+    const allSetIDs = allSets.map((set) => set.set_num);
 
     // If the set_num entered is already in the database
     if (allSetIDs.includes(req.body.set_num)) {
       throw new Error("ID already exists in the system.");
     }
 
-    await legoData.addSet(req.body)
-    res.redirect("/lego/sets")
-  }catch(err){
-    res.render("500", { message: `I'm sorry, but we have encountered the following error: ${err}` });
+    await legoData.addSet(req.body);
+    res.redirect("/lego/sets");
+  } catch (err) {
+    res.render("500", {
+      message: `I'm sorry, but we have encountered the following error: ${err}`,
+    });
   }
-})
+});
+
+// updating a set
+app.get("/lego/editSet/:setNum", async (req, res) => {
+  try {
+    const num = req.params.setNum;
+    const set = await legoData.getSetByNum(num);
+    const themes = await legoData.getAllThemes();
+    res.render("editSet", { themes: themes, set: set });
+  } catch (err) {
+    res.status(404).render("404", { message: err });
+  }
+});
+
+app.post("/lego/editSet", async (req, res) => {
+  try {
+    await legoData.editSet(req.body.set_num, req.body);
+    res.redirect("/lego/sets");
+  } catch (err) {
+    res.render("500", {
+      message: `I'm sorry, but we have encountered the following error: ${err}`,
+    });
+  }
+});
 
 // ERROR pages (404, 500)
 app.use((req, res) => {

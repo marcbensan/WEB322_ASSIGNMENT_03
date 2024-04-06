@@ -195,11 +195,38 @@ function addSet(setData) {
       num_parts: num_parts,
       theme_id: theme_id,
       img_url: img_url,
-    }).then((createdSet) => {
-      resolve(createdSet)
-    }).catch(err => {
-      reject(err.errors[0].message )
     })
+      .then((createdSet) => {
+        resolve(createdSet);
+      })
+      .catch((err) => {
+        reject(err.errors[0].message);
+      });
+  });
+}
+
+function editSet(set_num, setData) {
+  return new Promise((resolve, reject) => {
+    const { name, year, num_parts, theme_id, img_url } = setData;
+
+    Set.update(
+      {
+        name: name,
+        year: year,
+        num_parts: num_parts,
+        theme_id: theme_id,
+        img_url: img_url,
+      },
+      {
+        where: { set_num: set_num },
+      }
+    )
+      .then((set) => {
+        resolve(set);
+      })
+      .catch((err) => {
+        reject(err.errors[0].message);
+      });
   });
 }
 
@@ -209,7 +236,8 @@ module.exports = {
   getAllThemes,
   getSetByNum,
   getSetsByTheme,
-  addSet
+  addSet,
+  editSet,
 };
 
 //initialize();
