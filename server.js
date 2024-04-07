@@ -6,9 +6,9 @@
  *
  *  https://www.senecacollege.ca/about/policies/academic-integrity-policy.html
  *
- *  Name: Denyl Marc Bensan   Student ID: 171309222 Date: 04/06/2024
+ *  Name: Denyl Marc Bensan   Student ID: 171309222 Date: 04/07/2024
  *
- *  Published URL: ___________________________________________________________
+ *  Published URL: https://powerful-button-hare.cyclic.app/
  *
  ********************************************************************************/
 
@@ -19,20 +19,6 @@ const app = express();
 const path = require("path");
 const layout = require("express-ejs-layouts");
 const Sequelize = require("sequelize");
-
-const sequelize = new Sequelize(
-  process.env.DB_DATABASE,
-  process.env.DB_USER,
-  process.env.DB_PASSWORD, 
-  {
-    host: process.env.DB_HOST,
-    dialect: "postgres",
-    port: 5432,
-    dialectOptions: {
-      ssl: { rejectUnauthorized: false },
-    },
-  }
-);
 
 // body parser
 app.use(express.json());
@@ -154,16 +140,10 @@ app.get("/lego/deleteSet/:setNum", async (req, res) => {
   }
 });
 
-// ERROR pages (404, 500)
+// ERROR pages (404)
 app.use((req, res) => {
   res.status(404).render("404", {
     message: "I'm sorry, we're unable to find what you're looking for",
-  });
-});
-
-app.use((req, res) => {
-  res.status(500).render("500", {
-    message: "Something went wrong on our end.",
   });
 });
 

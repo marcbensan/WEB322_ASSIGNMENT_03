@@ -61,24 +61,12 @@ Set.belongsTo(Theme, {
   foreignKey: "theme_id",
 });
 
-// let sets = [];
-
-// old initialize function
-// setData.forEach((set) => {
-//   // Find the theme according to the set
-//   const theme = themeData.find((theme) => set.theme_id === theme.id);
-
-//   if (theme) {
-//     set.theme = theme.name;
-//     sets.push(set);
-//   }
-
+// initialize sequelize
 function initialize() {
   return new Promise(async (resolve, reject) => {
     try {
       await sequelize.sync();
       console.log("Connected successfully.");
-
       resolve();
     } catch (err) {
       reject(err.message);
@@ -111,8 +99,6 @@ function initialize() {
 //     }
 //   });
 // }
-
-// initialize();
 
 function getAllSets() {
   return new Promise((resolve, reject) => {
@@ -236,7 +222,7 @@ function deleteSet(set_num) {
       where: {set_num: set_num}
     }).then((set) => {
       resolve(set)
-    }).catch(err => {
+    }).catch((err) => {
       reject(err.errors[0].message)
     })
   })
@@ -252,6 +238,3 @@ module.exports = {
   editSet,
   deleteSet
 };
-
-//initialize();
-//console.log(getSetsByTheme("The Muppets"));
