@@ -64,13 +64,16 @@ let Schema = mongoose.Schema;
 //   foreignKey: "theme_id",
 // });
 
-let themeSchema = new Schema({
-  id: {
-    type: Number,
-    unique: true,
+let themeSchema = new Schema(
+  {
+    id: {
+      type: Number,
+      unique: true,
+    },
+    name: String,
   },
-  name: String,
-}, { _id: false });
+  { _id: false }
+);
 
 let Theme = mongoose.model("Themes", themeSchema);
 
@@ -81,10 +84,10 @@ let setSchema = new Schema({
   theme_id: Number,
   num_parts: Number,
   img_url: String,
-  theme: { 
-    id: Number, 
-    name: String 
-  }
+  theme: {
+    id: Number,
+    name: String,
+  },
 });
 
 let Set = mongoose.model("Sets", setSchema);
@@ -144,7 +147,6 @@ function initialize() {
 function getAllSets() {
   return new Promise((resolve, reject) => {
     Set.find()
-      .populate("theme_id")
       .exec()
       .then((sets) => {
         resolve(sets);
@@ -190,11 +192,11 @@ function getSetByNum(setNum) {
 
 function getSetsByTheme(theme) {
   return new Promise((resolve, reject) => {
-    Set.find({
-      theme_id: { theme },
-    })
+    Set.find({})
+      .exec()
       .then((sets) => {
-        resolve(sets);
+        const themedSets = sets.filter((set) => set.theme.name === theme);
+        resolve(themedSets);
       })
       .catch((err) => {
         reject(err);

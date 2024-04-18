@@ -8,13 +8,13 @@
         <p class="py-6">
           Browse the entire collection. Click the theme to filter by themes such
           as:
-          <a href="/lego/sets?theme=avengers" class="btn btn-primary btn-sm"
+          <a href="/lego/sets?theme=Avengers" class="btn btn-primary btn-sm"
             >Avengers</a
           >
-          <a href="/lego/sets?theme=creator" class="btn btn-primary btn-sm"
+          <a href="/lego/sets?theme=Creator" class="btn btn-primary btn-sm"
             >Creator</a
           >
-          <a href="/lego/sets?theme=batman" class="btn btn-primary btn-sm"
+          <a href="/lego/sets?theme=Batman" class="btn btn-primary btn-sm"
             >Batman</a
           >
         </p>
@@ -39,8 +39,8 @@
 
           <td>
             <%= set.name %> |
-            <a href="/lego/sets?theme=<%= set.theme_name.name %>" class="btn mt-2 btn-xs"
-              ><%= set.theme_name.name %></a
+            <a href="/lego/sets?theme=<%= set.theme.name %>" class="btn mt-2 btn-xs"
+              ><%= set.theme.name %></a
             >
           </td>
 
