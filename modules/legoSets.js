@@ -9,102 +9,144 @@
  *  Name: Denyl Marc Bensan Student ID: 171309222 Date: 02-15-2024
  *
  ********************************************************************************/
-// const setData = require("../data/setData");
-// const themeData = require("../data/themeData");
+
+const themeData = require("../data/themeData");
+const setData = require("../data/setData.json");
 require("dotenv").config();
 const Sequelize = require("sequelize");
+const mongoose = require("mongoose");
+let Schema = mongoose.Schema;
 
 // sequelize init
-const sequelize = new Sequelize(
-  process.env.DB_DATABASE,
-  process.env.DB_USER,
-  process.env.DB_PASSWORD,
+// const sequelize = new Sequelize(
+//   process.env.DB_DATABASE,
+//   process.env.DB_USER,
+//   process.env.DB_PASSWORD,
+//   {
+//     host: process.env.DB_HOST,
+//     dialect: "postgres",
+//     port: 5432,
+//     dialectOptions: {
+//       ssl: { rejectUnauthorized: false },
+//     },
+//   }
+// );
+
+// const Theme = sequelize.define(
+//   "Theme",
+//   {
+//     id: { type: Sequelize.INTEGER, primaryKey: true, autoIncrement: true },
+//     name: Sequelize.STRING,
+//   },
+//   {
+//     createdAt: false,
+//     updatedAt: false,
+//   }
+// );
+
+// const Set = sequelize.define(
+//   "Set",
+//   {
+//     set_num: { type: Sequelize.STRING, primaryKey: true },
+//     name: Sequelize.STRING,
+//     year: Sequelize.INTEGER,
+//     num_parts: Sequelize.INTEGER,
+//     theme_id: Sequelize.INTEGER,
+//     img_url: Sequelize.STRING,
+//   },
+//   {
+//     createdAt: false,
+//     updatedAt: false,
+//   }
+// );
+
+// Set.belongsTo(Theme, {
+//   foreignKey: "theme_id",
+// });
+
+let themeSchema = new Schema(
   {
-    host: process.env.DB_HOST,
-    dialect: "postgres",
-    port: 5432,
-    dialectOptions: {
-      ssl: { rejectUnauthorized: false },
+    id: {
+      type: Number,
+      unique: true,
     },
-  }
-);
-
-const Theme = sequelize.define(
-  "Theme",
-  {
-    id: { type: Sequelize.INTEGER, primaryKey: true, autoIncrement: true },
-    name: Sequelize.STRING,
+    name: String,
   },
   {
-    createdAt: false,
-    updatedAt: false,
+    versionKey: false,
+    _id: false,
   }
 );
 
-const Set = sequelize.define(
-  "Set",
+let setSchema = new Schema(
   {
-    set_num: { type: Sequelize.STRING, primaryKey: true },
-    name: Sequelize.STRING,
-    year: Sequelize.INTEGER,
-    num_parts: Sequelize.INTEGER,
-    theme_id: Sequelize.INTEGER,
-    img_url: Sequelize.STRING,
+    set_num: String,
+    name: String,
+    year: Number,
+    theme_id: Number,
+    num_parts: Number,
+    img_url: String,
+    theme_name: { type: mongoose.Types.ObjectId, ref: "Themes" }, // tto be populated by name corresponding to theme_id
   },
   {
-    createdAt: false,
-    updatedAt: false,
+    versionKey: false,
+    _id: false,
   }
 );
 
-Set.belongsTo(Theme, {
-  foreignKey: "theme_id",
-});
+let Theme = mongoose.model("Themes", themeSchema);
+let Set = mongoose.model("Sets", setSchema);
 
-// initialize sequelize
-function initialize() {
-  return new Promise(async (resolve, reject) => {
-    try {
-      await sequelize.sync();
-      console.log("Connected successfully.");
-      resolve();
-    } catch (err) {
-      reject(err.message);
-    }
-  });
-}
-
-// FUNCTION TO LOAD THE TABLE WITH DATA
+// initialize mongoose
 // function initialize() {
 //   return new Promise(async (resolve, reject) => {
 //     try {
-//       await sequelize.sync();
-
-//       const themesExists = await Theme.findAll();
-//       const setsExists = await Set.findAll();
-
-//       if (themesExists.length === 0) {
-//         await Theme.bulkCreate(themeData);
-//       }
-
-//       if (setsExists.length === 0) {
-//         await Set.bulkCreate(setData);
-//       }
-
-//       console.log("Data inserted to table");
-
+//       mongoose.connect(process.env.DB_CONNECTION_STRING);
+//       console.log("Connected successfully.");
 //       resolve();
 //     } catch (err) {
 //       reject(err.message);
+//       process.exit(1);
 //     }
 //   });
 // }
 
+// FUNCTION TO LOAD THE TABLE WITH DATA
+function initialize() {
+  return new Promise(async (resolve, reject) => {
+    try {
+      mongoose.connect(process.env.DB_CONNECTION_STRING);
+      console.log("Connected to MongoDB successfully.");
+
+      const themesExists = await Theme.find();
+      const setsExists = await Set.find();
+
+      if (themesExists.length === 0) {
+        await Theme.insertMany(themeData);
+      }
+
+      if (setsExists.length === 0) {
+        await Set.insertMany(setData);
+      }
+
+      console.log("Data inserted to table");
+
+      resolve();
+    } catch (err) {
+      console.error("Error during data insertion:", err);
+      reject(err.message);
+      process.exit(1); // Exit the process with a failure code
+    }
+  });
+}
+
+initialize();
+
 function getAllSets() {
   return new Promise((resolve, reject) => {
-    Set.findAll({
-      include: [Theme],
-    })
+    Set.find({})
+      .populate("theme_name", "name")
+      .exec()
       .then((sets) => {
         resolve(sets);
       })
@@ -149,19 +191,10 @@ function getSetByNum(setNum) {
 
 function getSetsByTheme(theme) {
   return new Promise((resolve, reject) => {
-    Set.findAll({
-      include: [Theme],
-      where: {
-        "$Theme.name$": {
-          [Sequelize.Op.iLike]: `%${theme}%`,
-        },
-      },
+    Set.find({
+      theme_id: { theme },
     })
       .then((sets) => {
-        if (sets.length === 0) {
-          reject("Unable to find requested sets.");
-        }
-
         resolve(sets);
       })
       .catch((err) => {
@@ -219,13 +252,15 @@ function editSet(set_num, setData) {
 function deleteSet(set_num) {
   return new Promise((resolve, reject) => {
     Set.destroy({
-      where: {set_num: set_num}
-    }).then((set) => {
-      resolve(set)
-    }).catch((err) => {
-      reject(err.errors[0].message)
+      where: { set_num: set_num },
     })
-  })
+      .then((set) => {
+        resolve(set);
+      })
+      .catch((err) => {
+        reject(err.errors[0].message);
+      });
+  });
 }
 
 module.exports = {
@@ -236,5 +271,5 @@ module.exports = {
   getSetsByTheme,
   addSet,
   editSet,
-  deleteSet
+  deleteSet,
 };

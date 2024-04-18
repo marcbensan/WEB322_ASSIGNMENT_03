@@ -19,6 +19,8 @@ const app = express();
 const path = require("path");
 const layout = require("express-ejs-layouts");
 const Sequelize = require("sequelize");
+const mongoose = require('mongoose');
+
 
 // body parser
 app.use(express.json());
@@ -54,6 +56,7 @@ app.get("/lego/sets", async (req, res) => {
     let legoSets = theme
       ? await legoData.getSetsByTheme(theme)
       : await legoData.getAllSets();
+      console.log(legoSets);
     res.render("sets", { sets: legoSets });
   } catch (error) {
     res
