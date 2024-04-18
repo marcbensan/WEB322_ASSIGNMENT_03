@@ -56,8 +56,8 @@ app.get("/lego/sets", async (req, res) => {
     let legoSets = theme
       ? await legoData.getSetsByTheme(theme)
       : await legoData.getAllSets();
-      console.log(legoSets);
-    res.render("sets", { sets: legoSets });
+      res.json(legoSets)
+    //res.render("sets", { sets: legoSets });
   } catch (error) {
     res
       .status(404)

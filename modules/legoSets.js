@@ -64,88 +64,87 @@ let Schema = mongoose.Schema;
 //   foreignKey: "theme_id",
 // });
 
-let themeSchema = new Schema(
-  {
-    id: {
-      type: Number,
-      unique: true,
-    },
-    name: String,
+let themeSchema = new Schema({
+  id: {
+    type: Number,
+    unique: true,
   },
-  {
-    versionKey: false,
-    _id: false,
-  }
-);
-
-let setSchema = new Schema(
-  {
-    set_num: String,
-    name: String,
-    year: Number,
-    theme_id: Number,
-    num_parts: Number,
-    img_url: String,
-    theme_name: { type: mongoose.Types.ObjectId, ref: "Themes" }, // tto be populated by name corresponding to theme_id
-  },
-  {
-    versionKey: false,
-    _id: false,
-  }
-);
+  name: String,
+}, { _id: false });
 
 let Theme = mongoose.model("Themes", themeSchema);
+
+let setSchema = new Schema({
+  set_num: String,
+  name: String,
+  year: Number,
+  theme_id: Number,
+  num_parts: Number,
+  img_url: String,
+  theme: { 
+    id: Number, 
+    name: String 
+  }
+});
+
 let Set = mongoose.model("Sets", setSchema);
 
 // initialize mongoose
-// function initialize() {
-//   return new Promise(async (resolve, reject) => {
-//     try {
-//       mongoose.connect(process.env.DB_CONNECTION_STRING);
-//       console.log("Connected successfully.");
-//       resolve();
-//     } catch (err) {
-//       reject(err.message);
-//       process.exit(1);
-//     }
-//   });
-// }
-
-// FUNCTION TO LOAD THE TABLE WITH DATA
 function initialize() {
   return new Promise(async (resolve, reject) => {
     try {
       mongoose.connect(process.env.DB_CONNECTION_STRING);
-      console.log("Connected to MongoDB successfully.");
-
-      const themesExists = await Theme.find();
-      const setsExists = await Set.find();
-
-      if (themesExists.length === 0) {
-        await Theme.insertMany(themeData);
-      }
-
-      if (setsExists.length === 0) {
-        await Set.insertMany(setData);
-      }
-
-      console.log("Data inserted to table");
-
+      console.log("Connected successfully.");
       resolve();
     } catch (err) {
-      console.error("Error during data insertion:", err);
       reject(err.message);
-      process.exit(1); // Exit the process with a failure code
+      process.exit(1);
     }
   });
 }
 
-initialize();
+// FUNCTION TO LOAD THE TABLE WITH DATA
+// function initialize() {
+//   return new Promise(async (resolve, reject) => {
+//     try {
+//       mongoose.connect(process.env.DB_CONNECTION_STRING);
+//       console.log("Connected to MongoDB successfully.");
+
+//       const themesExist = await Theme.exists({});
+//       const setsExist = await Set.exists({});
+
+//       if (!themesExist) {
+//         await Theme.insertMany(themeData);
+//         console.log("Themes data inserted to table");
+//       }
+
+//       if (!setsExist) {
+//         // Iterate through each set and populate the theme field
+//         for (const set of setData) {
+//           const theme = await Theme.findOne({ id: set.theme_id });
+//           if (theme) {
+//             set.theme = { id: theme.id, name: theme.name };
+//           }
+//         }
+//         await Set.insertMany(setData);
+//         console.log("Sets data inserted to table");
+//       }
+
+//       resolve();
+//     } catch (err) {
+//       console.error("Error during data insertion:", err);
+//       reject(err.message);
+//       process.exit(1); // Exit the process with a failure code
+//     }
+//   });
+// }
+
+// initialize();
 
 function getAllSets() {
   return new Promise((resolve, reject) => {
-    Set.find({})
-      .populate("theme_name", "name")
+    Set.find()
+      .populate("theme_id")
       .exec()
       .then((sets) => {
         resolve(sets);
