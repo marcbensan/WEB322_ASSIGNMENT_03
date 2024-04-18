@@ -146,7 +146,7 @@ function initialize() {
 
 function getAllSets() {
   return new Promise((resolve, reject) => {
-    Set.find()
+    Set.find({})
       .exec()
       .then((sets) => {
         resolve(sets);
@@ -160,10 +160,10 @@ function getAllSets() {
 // added a new function that retrieves all themes
 function getAllThemes() {
   return new Promise((resolve, reject) => {
-    Theme.findAll({
-      order: [["id"]],
-    })
+    Theme.find({})
+      .exec()
       .then((themes) => {
+        console.log(themes);
         resolve(themes);
       })
       .catch((err) => {
@@ -175,9 +175,9 @@ function getAllThemes() {
 function getSetByNum(setNum) {
   return new Promise((resolve, reject) => {
     Set.findOne({
-      include: [Theme],
-      where: { set_num: setNum },
+      set_num: setNum,
     })
+      .exec()
       .then((sets) => {
         if (sets.length === 0) {
           reject("Unable to find requested set");
@@ -208,14 +208,17 @@ function addSet(setData) {
   return new Promise((resolve, reject) => {
     const { set_num, name, year, num_parts, theme_id, img_url } = setData;
 
-    Set.create({
+    const newSet = new Set({
       set_num: set_num,
       name: name,
       year: year,
-      num_parts: num_parts,
       theme_id: theme_id,
+      num_parts: num_parts,
       img_url: img_url,
-    })
+    });
+
+    newSet
+      .save()
       .then((createdSet) => {
         resolve(createdSet);
       })
@@ -229,18 +232,21 @@ function editSet(set_num, setData) {
   return new Promise((resolve, reject) => {
     const { name, year, num_parts, theme_id, img_url } = setData;
 
-    Set.update(
+    Set.updateOne(
       {
-        name: name,
-        year: year,
-        num_parts: num_parts,
-        theme_id: theme_id,
-        img_url: img_url,
+        set_num: set_num,
       },
       {
-        where: { set_num: set_num },
+        $set: {
+          name: name,
+          year: year,
+          theme_id: theme_id,
+          num_parts: num_parts,
+          img_url: img_url,
+        },
       }
     )
+      .exec()
       .then((set) => {
         resolve(set);
       })
@@ -252,9 +258,10 @@ function editSet(set_num, setData) {
 
 function deleteSet(set_num) {
   return new Promise((resolve, reject) => {
-    Set.destroy({
-      where: { set_num: set_num },
+    Set.deleteOne({
+      set_num: set_num,
     })
+      .exec()
       .then((set) => {
         resolve(set);
       })

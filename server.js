@@ -67,8 +67,8 @@ app.get("/lego/sets", async (req, res) => {
 // query lego by id
 app.get("/lego/sets/:id", async (req, res) => {
   try {
-    const id = req.params.id;
-    const set = await legoData.getSetByNum(id);
+    let set = await legoData.getSetByNum(req.params.id);
+    console.log(set);
     res.render("set", { set: set });
   } catch (error) {
     res.status(404).render("404", { message: "Unable to find requested set." });
@@ -111,7 +111,9 @@ app.get("/lego/editSet/:setNum", async (req, res) => {
   try {
     const num = req.params.setNum;
     const set = await legoData.getSetByNum(num);
+    console.log(set)
     const themes = await legoData.getAllThemes();
+    console.log(themes)
     res.render("editSet", { themes: themes, set: set });
   } catch (err) {
     res.status(404).render("404", { message: err });
