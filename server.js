@@ -88,6 +88,8 @@ app.get("/lego/addSet", async (req, res) => {
 // creating a set
 app.post("/lego/addSet", async (req, res) => {
   try {
+    const { name, year, num_parts, theme_id, img_url } = req.body;
+    const theme = await legoData.getThemeById(theme_id);
     // validator to check set_num uniqueness
     const allSets = await legoData.getAllSets();
     const allSetIDs = allSets.map((set) => set.set_num);
@@ -97,7 +99,7 @@ app.post("/lego/addSet", async (req, res) => {
       throw new Error("ID already exists in the system.");
     }
 
-    await legoData.addSet(req.body);
+    await legoData.addSet(req.body, theme);
     res.redirect("/lego/sets");
   } catch (err) {
     res.render("500", {
@@ -122,7 +124,9 @@ app.get("/lego/editSet/:setNum", async (req, res) => {
 
 app.post("/lego/editSet", async (req, res) => {
   try {
-    await legoData.editSet(req.body.set_num, req.body);
+    const { name, year, num_parts, theme_id, img_url } = req.body;
+    const theme = await legoData.getThemeById(theme_id);
+    await legoData.editSet(req.body.set_num, req.body, theme);
     res.redirect("/lego/sets");
   } catch (err) {
     res.render("500", {

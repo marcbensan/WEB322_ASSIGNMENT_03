@@ -147,6 +147,7 @@ function initialize() {
 function getAllSets() {
   return new Promise((resolve, reject) => {
     Set.find({})
+      .sort({ set_num: "asc" })
       .exec()
       .then((sets) => {
         resolve(sets);
@@ -190,6 +191,19 @@ function getSetByNum(setNum) {
   });
 }
 
+function getThemeById(id) {
+  return new Promise((resolve, reject) => {
+    Theme.findOne({ id: id })
+      .exec()
+      .then((theme) => {
+        resolve(theme);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+}
+
 function getSetsByTheme(theme) {
   return new Promise((resolve, reject) => {
     Set.find({})
@@ -204,7 +218,7 @@ function getSetsByTheme(theme) {
   });
 }
 
-function addSet(setData) {
+function addSet(setData, theme) {
   return new Promise((resolve, reject) => {
     const { set_num, name, year, num_parts, theme_id, img_url } = setData;
 
@@ -215,6 +229,10 @@ function addSet(setData) {
       theme_id: theme_id,
       num_parts: num_parts,
       img_url: img_url,
+      theme: {
+        id: theme.id,
+        name: theme.name,
+      },
     });
 
     newSet
@@ -228,7 +246,7 @@ function addSet(setData) {
   });
 }
 
-function editSet(set_num, setData) {
+function editSet(set_num, setData, theme) {
   return new Promise((resolve, reject) => {
     const { name, year, num_parts, theme_id, img_url } = setData;
 
@@ -243,6 +261,10 @@ function editSet(set_num, setData) {
           theme_id: theme_id,
           num_parts: num_parts,
           img_url: img_url,
+          theme: {
+            id: theme.id,
+            name: theme.name,
+          },
         },
       }
     )
@@ -276,6 +298,7 @@ module.exports = {
   getAllSets,
   getAllThemes,
   getSetByNum,
+  getThemeById,
   getSetsByTheme,
   addSet,
   editSet,
