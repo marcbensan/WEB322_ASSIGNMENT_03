@@ -1,12 +1,14 @@
 /********************************************************************************
- *  WEB322 – Assignment 02
+ *  WEB322 – Assignment 06
  *
  *  I declare that this assignment is my own work in accordance with Seneca's
  *  Academic Integrity Policy:
  *
  *  https://www.senecacollege.ca/about/policies/academic-integrity-policy.html
  *
- *  Name: Denyl Marc Bensan Student ID: 171309222 Date: 02-15-2024
+ *  Name: Denyl Marc Bensan   Student ID: 171309222 Date: 04/18/2024
+ *
+ *  Published URL: https://powerful-button-hare.cyclic.app/
  *
  ********************************************************************************/
 
@@ -64,6 +66,7 @@ let Schema = mongoose.Schema;
 //   foreignKey: "theme_id",
 // });
 
+// Mongo Schema Model
 let themeSchema = new Schema(
   {
     id: {
@@ -135,15 +138,15 @@ function initialize() {
 
 //       resolve();
 //     } catch (err) {
-//       console.error("Error during data insertion:", err);
 //       reject(err.message);
-//       process.exit(1); // Exit the process with a failure code
+//       process.exit(1);
 //     }
 //   });
 // }
 
 // initialize();
 
+/* ---------------------------- FUNCTIONS FOR CRUD OPERATIONS ---------------------------- */ 
 function getAllSets() {
   return new Promise((resolve, reject) => {
     Set.find({})
