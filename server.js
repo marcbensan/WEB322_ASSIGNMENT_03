@@ -8,6 +8,8 @@
  *
  *  Name: Denyl Marc Bensan   Student ID: 171309222 Date: 04/18/2024
  *
+ *  GitHub Repository URL: https://github.com/marcbensan/WEB322_ASSIGNMENT_03
+ * 
  *  Published URL: https://powerful-button-hare.cyclic.app/
  *
  ********************************************************************************/
